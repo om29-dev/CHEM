@@ -1,6 +1,7 @@
-import boot
+import wifi
+import led
 
-boot.ap('Your Plant','password')
-boot.sta('vivo1904','password')
+wifi.hotspot('Your Plant', 'password')
+wifi.connect('vivo1904', 'password')
 
-boot.led(1)
+led.blink(1)

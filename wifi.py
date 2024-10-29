@@ -11,4 +11,4 @@ def hotspot(a,b):
 #Connecting to a network
 def connect(a,b):
     sta.active(True)
-    sta.connect(a,b)
+    sta.connect(ssid=a, key=b)

@@ -1,5 +1,5 @@
 from machine import Pin # type: ignore
-from time import sleep_ms as delay
+from time import sleep as delay
 led = Pin(16, Pin.OUT)
 
 #Blinking LED

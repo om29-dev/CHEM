@@ -1,5 +1,6 @@
 import gc
 from wifi import ap, sta
+from led import blink
 
 #Cleaning Memory
 gc.collect()

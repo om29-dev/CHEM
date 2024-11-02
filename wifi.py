@@ -8,7 +8,7 @@ def hotspot(a,b):
     ap.active(True)
     ap.config(ssid=a, key=b)
 
-#Connecting to a network
+#Connecting to a Wifi Network
 def connect(a,b):
     sta.active(True)
     sta.connect(ssid=a, key=b)

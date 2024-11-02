@@ -9,4 +9,4 @@ gc.collect()
 sta.active(False)
 ap.active(False)
 
-blink(2,200,200)
+blink(2,0.5,0.1)

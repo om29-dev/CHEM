@@ -1,9 +1,9 @@
 from machine import ADC # type: ignore
 
-# Getting the analog pin
+# Getting the analog data from soil moisture detector
 adc = ADC(0)
 
-# Function to read soil moisture
+# Function to Read Soil Moisture
 def percent():
     value = adc.read()
     # Convert analog value to percentage

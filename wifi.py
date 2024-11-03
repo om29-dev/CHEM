@@ -7,6 +7,7 @@ sta = network.WLAN(network.STA_IF)
 def scan():
     sta.active(True)
     a=sta.scan()
+    sta.active(False)
     return a
 
 #Creating a Wifi Access Point

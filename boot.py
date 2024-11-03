@@ -6,7 +6,7 @@ from led import blink
 gc.collect()
 
 #Clearing Wifi Activity
-sta.active(False)
 ap.active(False)
+sta.active(False)
 
 blink(2,0.5,0.1)

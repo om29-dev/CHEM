@@ -9,4 +9,5 @@ gc.collect()
 ap.active(False)
 sta.active(False)
 
+#Indicates Successful Boot
 blink(2,0.5,0.1)

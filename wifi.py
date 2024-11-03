@@ -3,9 +3,6 @@ import network # type: ignore
 ap = network.WLAN(network.AP_IF)
 sta = network.WLAN(network.STA_IF)
 
-x = "Wifi Hotspot"
-y = "Connected to Wifi"
-
 #Scanning nearby Wifi Networks
 def scan():
     sta.active(True)
@@ -19,15 +16,15 @@ def hotspot(a,b):
     ap.config(ssid=a, key=b)
     if ap.active():
         ip=ap.ifconfig()[0]
-        print(x, "Created Successfully with IP Address:", ip)
+        print("Wifi Hotspot Created Successfully with IP Address:", ip)
     else:
-        print("Unable to create", x)
+        print("Error:W1")
 
 #Connecting to a Wifi Network
 def connect(a,b):
     sta.active(True)
     sta.connect(ssid=a, key=b)
     if sta.isconnected():
-        print(y, "Sucessfully")
+        print("Connected to Wifi Successfully")
     else:
-        print("Couldn't", y)
+        print("Error:W2")

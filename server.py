@@ -1,3 +1,4 @@
+import wifi
 # Handle HTTP requests
 def handle_client(client):
     request = client.recv(1024)
@@ -12,7 +13,7 @@ def handle_client(client):
         password_end = request.find(' ', password_start)
         password = request[password_start:password_end].replace('%20', ' ')
         
-        connect_to_wifi(ssid, password)
+        wifi.connect(ssid, password)
 
         # Check internet connection
         if check_internet():

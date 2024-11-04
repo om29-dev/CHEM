@@ -11,7 +11,7 @@ def start_server():
     s.listen(1)
     print('Listening on', addr)
 
-    while True:
+    for i in range(0,2):
         cl, addr = s.accept()
         print('Client connected from', addr)
         server.handle(cl)

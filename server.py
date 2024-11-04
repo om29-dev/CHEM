@@ -16,14 +16,14 @@ def handle_client(client):
         wifi.connect(ssid, password)
 
         # Check internet connection
-        if check_internet():
+        if wifi.check():
             response = "Connected to {} successfully!".format(ssid)
         else:
             response = "Failed to connect to internet."
         
         client.send('HTTP/1.1 200 OK\nContent-Type: text/plain\n\n{}'.format(response))
     else:
-        networks = scan_wifi()
+        networks = wifi.scan()
         html_content = read_html_file()
         options = ''.join(f'<option value="{ssid.decode()}">{ssid.decode()}</option>' for ssid, *_ in networks)
         html_content = html_content.replace('<select name="ssid">', f'<select name="ssid">{options}')

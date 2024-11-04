@@ -23,7 +23,3 @@ def hotspot(a,b):
 def connect(a,b):
     sta.active(True)
     sta.connect(ssid=a, key=b)
-    if sta.isconnected():
-        print("Connected to Wifi Successfully")
-    else:
-        print("Error:W2")

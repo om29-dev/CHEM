@@ -2,7 +2,7 @@ import wifi
 import file
 
 # Handle HTTP requests
-def handle_client(client):
+def handle(client):
     request = client.recv(1024)
     request = str(request)
 

@@ -23,3 +23,14 @@ def hotspot(a,b):
 def connect(a,b):
     sta.active(True)
     sta.connect(ssid=a, key=b)
+    while not sta.isconnected():
+        sleep()
+    print("Connected to:", a)
+
+def check():
+    try:
+        sta.active(True)
+        sta.connect('1.1.1.1','')
+        return True
+    except:
+        return False

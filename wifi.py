@@ -1,4 +1,5 @@
 import network # type: ignore
+from machine import idle as sleep
 
 ap = network.WLAN(network.AP_IF)
 sta = network.WLAN(network.STA_IF)
@@ -14,11 +15,9 @@ def scan():
 def hotspot(a,b):
     ap.active(True)
     ap.config(ssid=a, key=b)
-    if ap.active():
-        ip=ap.ifconfig()[0]
-        print("Wifi Hotspot Created Successfully with IP Address:", ip)
-    else:
-        print("Error:W1")
+    while not ap.active():
+        sleep()
+    print("Wifi Hotspot created with IP:", ap.ifconfig()[0])
 
 #Connecting to a Wifi Network
 def connect(a,b):

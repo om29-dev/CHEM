@@ -1,4 +1,6 @@
 import wifi
+import file
+
 # Handle HTTP requests
 def handle_client(client):
     request = client.recv(1024)
@@ -24,7 +26,7 @@ def handle_client(client):
         client.send('HTTP/1.1 200 OK\nContent-Type: text/plain\n\n{}'.format(response))
     else:
         networks = wifi.scan()
-        html_content = read_html_file()
+        html_content = file.read('index.html')
         options = ''.join(f'<option value="{ssid.decode()}">{ssid.decode()}</option>' for ssid, *_ in networks)
         html_content = html_content.replace('<select name="ssid">', f'<select name="ssid">{options}')
         

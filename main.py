@@ -1,28 +1,13 @@
 import wifi
+import telegram as tg
 
 wifi.hotspot('Your Plant', 'password')
 wifi.connect('vivo1904', 'password')
 
-
-import requests
-import time
-
-TOKEN = 'YOUR_BOT_TOKEN'
-URL = f'https://api.telegram.org/bot{TOKEN}'
-
-def get_updates(offset=None):
-    params = {'timeout': 100, 'offset': offset}
-    response = requests.get(f'{URL}/getUpdates', params=params)
-    return response.json()
-
-def send_message(chat_id, text):
-    params = {'chat_id': chat_id, 'text': text}
-    requests.post(f'{URL}/sendMessage', params=params)
-
 def main():
     offset = None
     while True:
-        updates = get_updates(offset)
+        updates = tg.update(offset)
         for item in updates['result']:
             offset = item['update_id'] + 1
             chat_id = item['message']['chat']['id']

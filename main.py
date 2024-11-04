@@ -16,4 +16,4 @@ def start_server():
         print('Client connected from', addr)
         server.handle(cl)
 
-start_server
+start_server()

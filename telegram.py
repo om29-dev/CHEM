@@ -1,5 +1,4 @@
 import requests as req
-from time import sleep as delay
 import json
 from config import TOKEN
 

@@ -1,5 +1,5 @@
 import network # type: ignore
-from machine import idle as sleep
+from machine import idle as sleep # type: ignore
 
 ap = network.WLAN(network.AP_IF)
 sta = network.WLAN(network.STA_IF)

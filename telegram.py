@@ -1,8 +1,8 @@
 import requests as req
 from time import sleep as delay
 import json
+from config import TOKEN
 
-TOKEN = 'YOUR_BOT_TOKEN'
 URL = f'https://api.telegram.org/bot{TOKEN}'
 
 def update(offset=None):

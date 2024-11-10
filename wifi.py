@@ -1,5 +1,6 @@
 import network # type: ignore
 from machine import idle as sleep # type: ignore
+from led import blink
 
 ap = network.WLAN(network.AP_IF)
 sta = network.WLAN(network.STA_IF)
@@ -22,10 +23,13 @@ def hotspot(a,b):
 #Connecting to a Wifi Network
 def connect(a,b):
     sta.active(True)
-    sta.connect(ssid=a, key=b)
-    while not sta.isconnected():
-        sleep()
-    print("Connected to:", a)
+    sta.connect(a,b)
+    try:
+        while not sta.isconnected():
+            sleep()
+        print("Connected to:", a)
+    except:
+        blink(2,0.1,0.1)
 
 def check():
     try:

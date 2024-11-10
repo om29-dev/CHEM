@@ -20,7 +20,6 @@ def handle_updates():
     url = URL + 'getUpdates'
     response = requests.get(url)
     updates = response.json()
-
     for update in updates['result']:
         if 'message' in update:
             message = update['message']

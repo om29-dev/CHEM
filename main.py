@@ -1,7 +1,7 @@
-import network
+import network # type: ignore
 import urequests
 import time
-from machine import Pin, ADC
+from machine import Pin, ADC # type: ignore
 
 # Variables as per need
 ssid = "vivo1904"  # WiFi Network Name

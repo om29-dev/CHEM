@@ -1,7 +1,7 @@
-import network # type: ignore
-import urequests
+import network
+import socket
 import time
-from machine import ADC # type: ignore
+from machine import Pin, ADC
 
 # Variables as per need
 ssid = "vivo1904"  # WiFi Network Name
@@ -11,7 +11,7 @@ bot_token = "7622834314:AAEU4Hg0aPy3Vw-8HjHBc9tecG5dVBXAWjQ"  # Telegram bot tok
 chat_id = "-1002473185185"  # Chat ID of the conversation
 
 # Initialize the sensor
-sensor = ADC(0)
+sensor = ADC(Pin(0))
 
 # Connect to WiFi
 def connect_to_wifi(ssid, password):
@@ -28,8 +28,14 @@ def connect_to_wifi(ssid, password):
 # Verify internet connection by connecting to Google
 def check_internet_connection():
     try:
-        response = urequests.get("https://www.google.com")
-        if response.status_code == 200:
+        addr_info = socket.getaddrinfo("www.google.com", 80)
+        addr = addr_info[0][-1]
+        s = socket.socket()
+        s.connect(addr)
+        s.send(b"GET / HTTP/1.1\r\nHost: www.google.com\r\n\r\n")
+        response = s.recv(1024)
+        s.close()
+        if b"200 OK" in response:
             return True
     except:
         return False
@@ -37,14 +43,18 @@ def check_internet_connection():
 # Function to send message to Telegram
 def send_message(chat_id, text):
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage?chat_id={chat_id}&text={text}"
-    try:
-        response = urequests.get(url)
-        if response.status_code == 200:
-            print("Message sent successfully")
-        else:
-            print("Failed to send message")
-    except:
-        print("Failed to connect to Telegram")
+    _, _, host, path = url.split('/', 3)
+    addr_info = socket.getaddrinfo(host, 443)
+    addr = addr_info[0][-1]
+    s = socket.socket()
+    s.connect(addr)
+    s.send(bytes(f"GET /{path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\n\r\n", "utf8"))
+    response = s.recv(1024)
+    s.close()
+    if b'"ok":true' in response:
+        print("Message sent successfully")
+    else:
+        print("Failed to send message")
 
 # Setup
 wlan = connect_to_wifi(ssid, password)

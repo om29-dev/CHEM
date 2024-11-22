@@ -11,7 +11,7 @@ bot_token = "7622834314:AAEU4Hg0aPy3Vw-8HjHBc9tecG5dVBXAWjQ"  # Telegram bot tok
 chat_id = "-1002473185185"  # Chat ID of the conversation
 
 # Initialize the sensor
-sensor = ADC(Pin(0))
+sensor = ADC(0)
 
 # Connect to WiFi
 def connect_to_wifi(ssid, password):
